@@ -1,13 +1,11 @@
-package com.nikhiljain.fundoonotes.data.converters
+package com.nikhiljain.fundoonotes.data
 
 import androidx.room.TypeConverter
 import java.lang.Exception
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
-object TypeConverters {
-    private const val DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+class DateTypeConverters {
     private val formatter: SimpleDateFormat
         get() = SimpleDateFormat(DATE_PATTERN, Locale.getDefault())
 
@@ -24,4 +22,8 @@ object TypeConverters {
     @TypeConverter
     fun fromOffsetDateTime(date: Date?): String? =
         date?.let { formatter.format(date) }
+
+    companion object {
+        private const val DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    }
 }

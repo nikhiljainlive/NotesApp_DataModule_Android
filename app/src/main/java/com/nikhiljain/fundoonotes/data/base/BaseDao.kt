@@ -6,11 +6,11 @@ import androidx.room.*
 interface BaseDao<E> {
 
     @Insert
-    suspend fun insert(entity: E): Boolean
+    suspend fun insert(entity: E): Long
 
     @Update
-    suspend fun update(entity: E): Boolean
+    suspend fun update(entity: E)
 
     @Delete
-    suspend fun delete(entity: E): Boolean
+    suspend fun delete(entity: E)
 }

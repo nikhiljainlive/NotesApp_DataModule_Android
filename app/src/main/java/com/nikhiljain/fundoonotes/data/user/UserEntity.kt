@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(
     tableName = "user_table",
@@ -13,7 +14,7 @@ data class UserEntity(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
-    val id: Long,
+    val id: Long = 0L,
 
     @ColumnInfo(name = "first_name")
     val firstName: String,
@@ -26,6 +27,12 @@ data class UserEntity(
 
     @ColumnInfo(name = "password")
     val password: String,
+
+    @ColumnInfo(name = "created_at")
+    val createdAt: Date = Date(),
+
+    @ColumnInfo(name = "modified_at")
+    var modifiedAt: Date = createdAt,
 
     @ColumnInfo(name = "mobile_number")
     val mobileNumber: String

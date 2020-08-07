@@ -1,9 +1,6 @@
 package com.nikhiljain.fundoonotes.data.note
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.nikhiljain.fundoonotes.data.user.UserEntity
 import java.util.*
 
@@ -15,12 +12,14 @@ import java.util.*
         childColumns = ["user_id"],
         onUpdate = ForeignKey.CASCADE,
         onDelete = ForeignKey.CASCADE
-    )]
+    )],
+    indices = [Index("user_id")]
 )
 data class NoteEntity(
 
     @PrimaryKey(autoGenerate = true)
-    var noteId: Long = 0L,
+    @ColumnInfo(name = "_id")
+    val noteId: Long = 0L,
 
     @ColumnInfo(name = "note_title")
     var title: String?,
@@ -29,10 +28,10 @@ data class NoteEntity(
     var description: String?,
 
     @ColumnInfo(name = "created_at")
-    val createdAt: Date,
+    val createdAt: Date = Date(),
 
     @ColumnInfo(name = "modified_at")
-    var modifiedAt: Date,
+    var modifiedAt: Date = createdAt,
 
     @ColumnInfo(name = "reminder")
     var reminder: Date?,
